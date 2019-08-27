@@ -1,0 +1,69 @@
+package com.wang.demo;
+import java.util.Scanner;
+
+public class FindWay {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		int[] array1 = {50, 60, 80, 75, 55, 65, 58};//无序的数组
+		int[] array2 = new int[10];
+		//有序的数组
+		for(int i=0;i<array2.length;i++) {
+			array2[i] = 10*i;
+		}
+		//array2=[0,10,20,30,40,50,60,70,80,90];
+		
+		
+		///////////////////////遍历输出array1，array2
+		System.out.print("array1:  ");
+		for(int i=0;i<array1.length;i++) {
+			System.out.print(array1[i]+" ");
+		}
+		System.out.println();
+		System.out.print("array2:  ");
+		for(int i=0;i<array2.length;i++) {
+			System.out.print(array2[i]+" ");
+		}
+		////////////////////////////////
+		
+	    //////////////遍历查找，适用于所有
+		int index1 = -1;//存放索引的位置（下表），没找到为-1
+		System.out.println("\n请输入要查找的值（array1）：");
+		int number1 = input.nextInt();
+		for(int i=0;i<array1.length;i++) {
+			if(number1==array1[i]) {
+				index1 = i;
+				break;
+			}
+		}
+		if(index1!=-1) {
+			System.out.println("找到了,下标为"+index1);
+		}else {
+			System.out.println("没找到");
+		}
+		/////////////////////////折半查找，适用于有序的
+		int index2 = -1;//存放索引的位置（下表），没找到为-1
+		System.out.println("\n请输入要查找的值（array2）：");
+		int number2 = input.nextInt();
+		int start = 0;
+		int end = array2.length-1;//初始头，尾下标
+		while(start<=end) {
+			int middle = (start + end)/2;
+			if(number2==array2[middle]) {
+				index2 = middle;
+				break;
+			}
+			if(number2<array2[middle]) {
+				end = middle - 1;
+			}
+			if(number2>array2[middle]) {
+				start = middle + 1;
+			}	
+		}
+		if(index2!=-1) {
+			System.out.println("找到了,下标为"+index2);
+		}else {
+			System.out.println("没找到");
+		}
+		///////////////////////////	
+	}
+}
